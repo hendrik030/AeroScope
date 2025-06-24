@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>AeroScope Web</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>AeroScope Web-Analyse</h1>
+  {% if error %}
+    <p class="error">{{ error }}</p>
+  {% endif %}
+  <form method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".fit">
+    <button type="submit">Analysieren</button>
+  </form>
+  {% if img_data %}
+    <h2>Herzfrequenz-Plot</h2>
+    <img src="data:image/png;base64,{{ img_data }}" alt="Plot">
+  {% endif %}
+</body>
+</html>
