@@ -1,0 +1,19 @@
+/* static/style.css */
+body {
+  font-family: sans-serif;
+  margin: 2rem;
+}
+h1 {
+  color: #2c3e50;
+}
+form label {
+  margin-right: 1rem;
+}
+.error {
+  color: red;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+}

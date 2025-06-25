@@ -2,4 +2,6 @@ Flask==2.3.2
 numpy
 matplotlib
 fitparse
+mplcursors
+Pillow
 gunicorn

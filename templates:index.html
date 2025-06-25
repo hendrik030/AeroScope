@@ -1,0 +1,51 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <title>AeroScope Web</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <h1>AeroScope Web-Analyse</h1>
+
+  {% if error %}
+    <p class="error">{{ error }}</p>
+  {% endif %}
+
+  <form method="post" enctype="multipart/form-data">
+    <label>FIT-Datei:
+      <input type="file" name="file" accept=".fit">
+    </label><br><br>
+
+    <!-- Parameter-Felder wie im Desktop-Tool -->
+    <label>Upper Threshold: <input name="upper_threshold" value="5"></label>
+    <label>Lower Threshold: <input name="lower_threshold" value="1"></label><br>
+    <label>Min Duration:   <input name="min_duration" value="0.5"></label>
+    <label>Max Duration:   <input name="max_duration" value="10"></label><br>
+    <label>Lap Window:     <input name="lap_window" value="10"></label><br>
+    <label>System Mass:    <input name="system_mass" value="75"></label><br>
+    <label>Air Pressure:   <input name="air_pressure" value="1013"></label>
+    <label>Air Temp:       <input name="air_temp" value="20"></label><br>
+    <label>CRR:            <input name="crr" value="0.005"></label><br><br>
+
+    <button type="submit">Analyse starten</button>
+  </form>
+
+  {% if figures %}
+    {% for title, img in figures %}
+      <h2>{{ title }}</h2>
+      <img src="data:image/png;base64,{{ img }}" alt="{{ title }}">
+    {% endfor %}
+  {% endif %}
+
+  {% if stats %}
+    <h2>Statistiken</h2>
+    <ul>
+      {% for k, v in stats.items() %}
+        <li><strong>{{ k }}:</strong> {{ v }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+</body>
+</html>
